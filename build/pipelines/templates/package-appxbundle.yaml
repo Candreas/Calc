@@ -10,8 +10,8 @@ jobs:
 - job: Package
   dependsOn:
     - Buildx64
-    - Buildx86
-    - BuildARM
+#    - Buildx86
+#    - BuildARM
   condition: |
     and
     (
