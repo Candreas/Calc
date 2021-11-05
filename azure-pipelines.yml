@@ -16,38 +16,24 @@ variables:
 
 
 jobs:
-- template: ./templates/build-single-architecture.yaml
+- template: build/pipelines/templates/build-single-architecture.yaml
   parameters:
     platform: x64
     isReleaseBuild: true
     useReleaseAppxmanifest: true
 
-- template: ./templates/build-single-architecture.yaml
-  parameters:
-    platform: x86
-    isReleaseBuild: true
-    useReleaseAppxmanifest: true
-    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
 
-- template: ./templates/build-single-architecture.yaml
-  parameters:
-    platform: ARM
-    isReleaseBuild: true
-    useReleaseAppxmanifest: true
-    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
 
-- template: ./templates/run-unit-tests.yaml
+- template: build/pipelines/templates/run-unit-tests.yaml
   parameters:
     platform: x64
 
-- template: ./templates/run-unit-tests.yaml
-  parameters:
-    platform: x86
+-
 
-- template: ./templates/package-appxbundle.yaml
+- template: build/pipelines/templates/package-appxbundle.yaml
   parameters:
     signBundle: true
     createStoreBrokerPackages: true
 
-- template: ./templates/release-store.yaml
-- template: ./templates/release-vpack.yaml
+- template: build/pipelines/templates/release-store.yaml
+- template: build/pipelines/templates/release-vpack.yaml
