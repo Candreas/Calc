@@ -5,7 +5,7 @@
 #
 
 trigger:
-- manual
+- main
 pr: none
 
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
