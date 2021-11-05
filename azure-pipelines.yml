@@ -16,7 +16,7 @@ variables:
 
 
 jobs:
-- template: ../build/pipelines/templates/build-single-architecture.yaml
+- template: build/pipelines/templates/build-single-architecture.yaml
   parameters:
     platform: x64
     isReleaseBuild: true
@@ -28,7 +28,7 @@ jobs:
   parameters:
     platform: x64
 
--
+
 
 - template: build/pipelines/templates/package-appxbundle.yaml
   parameters:
