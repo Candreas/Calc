@@ -26,6 +26,3 @@ jobs:
 
 
 
-
-- template: build/pipelines/templates/release-store.yaml
-- template: build/pipelines/templates/release-vpack.yaml
