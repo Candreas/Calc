@@ -106,24 +106,4 @@ jobs:
         flattenFolders: false
         analyzeTarget: '$(Agent.BuildDirectory)\binskim\*'
 
-    - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-      displayName: Run BinSkim
-      inputs:
-        inputType: Basic
-        analyzeTarget: '$(Agent.BuildDirectory)\binskim\*'
-        analyzeVerbose: true
-        analyzeHashes: true
-      continueOnError: true
-
-    - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
-      displayName: Run PoliCheck
-      inputs:
-        targetType: F
-
-    - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-      displayName: Publish security analysis logs
-
-    - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-      displayName: Detect open source components
-      inputs:
-        sourceScanPath: $(Agent.BuildDirectory)
+    
