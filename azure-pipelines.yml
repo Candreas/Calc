@@ -1,30 +1,53 @@
-# Universal Windows Platform
-# Build a Universal Windows Platform project using Visual Studio.
-# Add steps that test and distribute an app, save build artifacts, and more:
-# https://aka.ms/yaml
+#
+# Release
+# This pipeline builds a version of the app in a production configuration to be released to the
+# Store and the Windows image. This pipeline relies on Microsoft-internal resources to run.
+#
 
-trigger:
-- main
-
-pool:
-  vmImage: 'windows-latest'
+trigger: none
+pr: none
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'x64'
-  buildConfiguration: 'Release'
-  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  versionMajor: 11
+  versionMinor: 2111
+  versionBuild: $[counter('11.2111.*', 0)]
+  versionPatch: 0
 
-steps:
-- task: NuGetToolInstaller@1
+name: '$(versionMajor).$(versionMinor).$(versionBuild).$(versionPatch)'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+jobs:
+- template: ./templates/build-single-architecture.yaml
+  parameters:
+    platform: x64
+    isReleaseBuild: true
+    useReleaseAppxmanifest: true
 
-- task: VSBuild@1
-  inputs:
-    platform: 'x86'
-    solution: '$(solution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+- template: ./templates/build-single-architecture.yaml
+  parameters:
+    platform: x86
+    isReleaseBuild: true
+    useReleaseAppxmanifest: true
+    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+
+- template: ./templates/build-single-architecture.yaml
+  parameters:
+    platform: ARM
+    isReleaseBuild: true
+    useReleaseAppxmanifest: true
+    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+
+- template: ./templates/run-unit-tests.yaml
+  parameters:
+    platform: x64
+
+- template: ./templates/run-unit-tests.yaml
+  parameters:
+    platform: x86
+
+- template: ./templates/package-appxbundle.yaml
+  parameters:
+    signBundle: true
+    createStoreBrokerPackages: true
+
+- template: ./templates/release-store.yaml
+- template: ./templates/release-vpack.yaml
