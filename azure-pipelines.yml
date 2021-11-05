@@ -15,6 +15,7 @@ variables:
 
 
 
+
 jobs:
 - template: build/pipelines/templates/build-single-architecture.yaml
   parameters:
