@@ -25,10 +25,7 @@ jobs:
 
 
 
-- template: build/pipelines/templates/package-appxbundle.yaml
-  parameters:
-    signBundle: true
-    createStoreBrokerPackages: true
+
 
 - template: build/pipelines/templates/release-store.yaml
 - template: build/pipelines/templates/release-vpack.yaml
