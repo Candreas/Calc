@@ -5,9 +5,7 @@
 #
 
 trigger:
-- master
-- release/*
-- feature/*
+- manual
 pr: none
 
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
