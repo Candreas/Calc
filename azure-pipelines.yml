@@ -8,12 +8,12 @@ trigger: none
 pr: none
 
 variables:
-  versionMajor: 11
-  versionMinor: 2111
-  versionBuild: $[counter('11.2111.*', 0)]
-  versionPatch: 0
+  solution: '**/*.sln'
+  buildPlatform: 'x86|x64|ARM'
+  buildConfiguration: 'Release'
+  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
-name: '$(versionMajor).$(versionMinor).$(versionBuild).$(versionPatch)'
+
 
 jobs:
 - template: ./templates/build-single-architecture.yaml
