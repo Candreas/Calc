@@ -15,7 +15,7 @@ jobs:
   parameters:
     isReleaseBuild: true
     useReleaseAppxManifest: false
-    platform: 'x64'
+    platform: 'x86'
 
 
 
