@@ -5,8 +5,11 @@
 #
 
 trigger:
-- main
+- master
+- release/*
+- feature/*
 pr: none
+
 
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
 
@@ -15,7 +18,7 @@ jobs:
   parameters:
     isReleaseBuild: true
     useReleaseAppxManifest: false
-    platform: 'x86'
+    platform: x64
 
 
 
