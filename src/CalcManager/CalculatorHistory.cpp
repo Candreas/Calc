@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.jj ll
+// Licensed under the MIT License.jj fff
 
 #include <cassert>
 #include "CalculatorHistory.h"
