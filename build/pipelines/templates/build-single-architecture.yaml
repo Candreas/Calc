@@ -3,7 +3,7 @@
 parameters:
   isReleaseBuild: false
   useReleaseAppxManifest: false
-  platform: 'x86'
+  platform: ''
   condition: ''
 
 jobs:
