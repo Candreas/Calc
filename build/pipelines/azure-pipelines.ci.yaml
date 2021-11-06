@@ -6,12 +6,9 @@
 
 trigger:
 - master
-- release/*
-- feature/*
+
 pr:
-- master
-- release/*
-- feature/*
+- none
 
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
 
@@ -20,6 +17,6 @@ jobs:
 - template: ./templates/build-single-architecture.yaml
   parameters:
     platform: x86
-    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+    condition: ''
 
 - template: ./templates/package-appxbundle.yaml
