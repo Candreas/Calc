@@ -10,9 +10,7 @@ trigger:
 - release/*
 - feature/*
 pr:
-- master
-- release/*
-- feature/*
+- none
 
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
 
