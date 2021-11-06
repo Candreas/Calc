@@ -16,9 +16,6 @@ pr:
 name: 0.$(Date:yyMM).$(DayOfMonth)$(Rev:rr).0
 
 jobs:
-- template: ./templates/build-single-architecture.yaml
-  parameters:
-    platform: x64
 
 - template: ./templates/build-single-architecture.yaml
   parameters:
